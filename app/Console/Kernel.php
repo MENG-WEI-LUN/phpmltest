@@ -3,7 +3,6 @@
 namespace App\Console;
 
 use App\User;
-use Faker\Factory;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -26,8 +25,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-	    $user = factory(User::class)->make();
-        $schedule->command('test:command',[$user->name,$user->email,'--password'=>$user->password])
+        $schedule->command('test:command')
 	        ->everyMinute()->withoutOverlapping();
     }
 

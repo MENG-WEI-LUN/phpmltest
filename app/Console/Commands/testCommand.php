@@ -13,8 +13,8 @@ class testCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'test:command {name} {email} {--password=123}';
-
+//    protected $signature = 'test:command {name} {email} {--password=123}';
+	protected $signature = 'test:command ';
     /**
      * The console command description.
      *
@@ -58,11 +58,13 @@ class testCommand extends Command
 //	    }
 //	    $bar->finish();
 //	    $this->table($headers, $users);
+	    
 	    DB::beginTransaction();
 	    try{
 		    //do something
+		    $user = factory(User::class)->make();
 		    
-		    User::create(['name'=>$this->argument('name'),'email'=>$this->argument('email'),'password'=>$this->option('password')]);
+		    User::create(['name'=>$user->name,'email'=>$user->email,'password'=>$user->password]);
 		    
 	    }catch (\Exception $e){
 		    //reset data when transaction fail
